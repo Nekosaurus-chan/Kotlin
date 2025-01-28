@@ -46,6 +46,19 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    flavorDimensions 'version'
+    productFlavors {
+        free {
+            dimension 'version'
+            applicationId 'free'
+            applicationIdSuffix '.free'
+        }
+        premium {
+            dimension 'version'
+            applicationId 'premium'
+            applicationIdSuffix '.premium'
+        }
+    }
 }
 
 dependencies {

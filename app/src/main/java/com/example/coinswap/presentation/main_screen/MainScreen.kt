@@ -220,18 +220,8 @@ fun MainScreen(
                                     MaterialTheme.colorScheme.primary
                                 } else MaterialTheme.colorScheme.onSurface
                             )
-                            IconButton(onClick = {
-                                copyToClipboard(context, state.fromCurrencyValue)
-                            }) {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_copy),
-                                    contentDescription = "Copy to Clipboard",
-                                    modifier = Modifier
-                                        .padding(8.dp)
-                                        .size(25.dp),
-                                    tint = MaterialTheme.colorScheme.onSurface
-                                )
-                            }
+
+
                         }
                     }
                 }
@@ -262,18 +252,6 @@ fun MainScreen(
                                     MaterialTheme.colorScheme.primary
                                 } else MaterialTheme.colorScheme.onSurface
                             )
-                            IconButton(onClick = {
-                                copyToClipboard(context, state.toCurrencyValue)
-                            }) {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_copy),
-                                    contentDescription = "Copy to Clipboard",
-                                    modifier = Modifier
-                                        .padding(8.dp)
-                                        .size(25.dp),
-                                    tint = MaterialTheme.colorScheme.onSurface
-                                )
-                            }
                         }
                         UnitRow(
                             modifier = Modifier.fillMaxWidth(),
@@ -294,14 +272,7 @@ fun MainScreen(
                     .clickable { onEvent(MainScreenEvent.SwapIconClicked) }
                     .background(color = MaterialTheme.colorScheme.background)
             ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_sync),
-                    contentDescription = "Swap Units",
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .size(25.dp),
-                    tint = MaterialTheme.colorScheme.onSurface
-                )
+
             }
         }
 
@@ -403,13 +374,6 @@ fun getUnitName(state: MainScreenState, unitCode: String): String {
         ConverterMode.LENGTH -> state.lengthUnits.find { it.code == unitCode }?.name ?: ""
         ConverterMode.VOLUME -> state.volumeUnits.find { it.code == unitCode }?.name ?: ""
     }
-}
-
-fun copyToClipboard(context: Context, text: String) {
-    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-    val clip = ClipData.newPlainText("Copied Text", text)
-    clipboard.setPrimaryClip(clip)
-    Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT).show()
 }
 
 @Preview(showBackground = true)
